@@ -7,10 +7,19 @@ from datetime import datetime
 class BaseModel:
     """the class BaseModel that defines all common
     attributes/methods for other classes"""
-    def __init__(self):
-        self.id = str(uuid4())
-        self.created_at = datetime.now()
-        self.updated_at = datetime.now()
+    def __init__(self, *args, **kwargs):
+
+        if kwargs is not None and kwargs != {}:
+            for p, worth in kwargs.items():
+                if p != "__class__":
+                    if p in ('created_at', 'updated_at'):
+                        setattr(self, p, datetime.fromisoformat(worth))
+                    else:
+                        setattr(self, p, worth)
+        else:
+            self.id = str(uuid4())
+            self.created_at = datetime.now()
+            self.updated_at = self.created_at
 
     def __str__(self):
         """returns string representation of the object """
