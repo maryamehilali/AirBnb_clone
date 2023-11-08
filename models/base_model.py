@@ -22,7 +22,7 @@ class BaseModel:
             self.updated_at = self.created_at
 
     def __str__(self):
-        """returns string representation of the object """
+        """ returns string representation of the object """
         return f"[{self.__class__.__name__}] ({self.id}) {self.__dict__}"
 
     def save(self):
