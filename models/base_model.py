@@ -8,7 +8,7 @@ class BaseModel:
     """the class BaseModel that defines all common
     attributes/methods for other classes"""
     def __init__(self):
-        slef.id = str(uuid4())
+        self.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
 
