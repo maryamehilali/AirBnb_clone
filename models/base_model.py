@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """module for class BaseModel """
-import uuid
-import datetime
+from uuid import uuid4
+from datetime import datetime
 
 
-class BaseModel(object):
+class BaseModel:
     """the class BaseModel that defines all common
     attributes/methods for other classes"""
-    id = str(uuid.uuid4())
-    created_at = datetime.now()
-    updated_at = datetime.now()
+    def __init__(self):
+        slef.id = str(uuid4())
+        self.created_at = datetime.now()
+        self.updated_at = datetime.now()
     
