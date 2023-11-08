@@ -11,4 +11,7 @@ class BaseModel:
         slef.id = str(uuid4())
         self.created_at = datetime.now()
         self.updated_at = datetime.now()
-    
+
+    def save(self):
+        """ This method updates the updated_at attribute with the current datetime. """
+        self.updated_at = datetime.now()
