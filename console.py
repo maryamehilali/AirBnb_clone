@@ -2,6 +2,7 @@
 """command interpreter"""
 import cmd
 from base_model import BaseModel
+from models import storage
 
 
 class HBNBCommand(cmd.Cmd):
@@ -11,12 +12,12 @@ class HBNBCommand(cmd.Cmd):
     def do_quit(self, args):
         """Quit command to exit the program\n"""
         return True
-    
+
     def do_EOF(self, args):
         """Exit the command interpreter when typing "control-D"\n"""
         print ('\n')
         return True
-    
+
     def emptyline(self):
         """a method called to make sure that an empty line + ENTER
         shouldn't execute anything\n"""
@@ -43,7 +44,7 @@ class HBNBCommand(cmd.Cmd):
         if len(arguments) >= 1:
             if arguments[0] == "BaseModel":
                 if len(arguments) >= 2:
-                    if arguments[1]: 
+                    if arguments[1]:
                         """if id exists print the instance"""
                     else:
                         print("** no instance found **")
@@ -73,7 +74,5 @@ class HBNBCommand(cmd.Cmd):
             else:
                 print("** class doesn't exist **")
 
-        
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
-    
