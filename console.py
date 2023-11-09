@@ -1,8 +1,7 @@
 #!/usr/bin/python3
 """command interpreter"""
 import cmd
-from models.base_model import BaseModel
-
+from base_model import BaseModel
 
 
 class HBNBCommand(cmd.Cmd):
@@ -26,15 +25,35 @@ class HBNBCommand(cmd.Cmd):
     def do_create(self, args):
         """Creates a new instance of BaseModel, saves it (to the JSON file)
         and prints the id"""
-        if len(args) > 1:
-            if args[1] == "BaseModel":
+        arguments = args.split()
+        if len(arguments) >= 1:
+            if arguments[0] == "BaseModel":
                 instance = BaseModel()
                 instance.save()
                 print(instance.id)
             else:
-                print("** class name missing **")
+                print("** class doesn't exist **")
         else:
-            print("** class doesn't exist **")
+            print("** class name missing **")
 
+    def do_show(self, args):
+        """Prints the string representation of an instance based
+        on the class name and id"""
+        arguments = args.split()
+        if len(arguments) >= 1:
+            if arguments[0] == "BaseModel":
+                if len(arguments) >= 2:
+                    if arguments[1]: 
+                        """if id exists print the instance"""
+                    else:
+                        print("** no instance found **")
+                else:
+                    print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
+        
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
+    
