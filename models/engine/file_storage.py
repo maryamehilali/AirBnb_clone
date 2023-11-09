@@ -28,4 +28,7 @@ class FileStorage(object):
         if isfile(self.__file_path):
             with open(self.__file_path, "r") as a_file:
                 obj_dict = json.load(a_file)
-                """not finished yet"""
+                for p, worth in obj_dict.items():
+                    cls_name = p.split('.')
+                    class_ = eval(cls_name)
+                    self.objects[p] = class_(**worth)
