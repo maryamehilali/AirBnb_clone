@@ -31,4 +31,5 @@ class FileStorage(object):
                 for p, worth in obj_dict.items():
                     cls_name = p.split('.')
                     class_ = eval(cls_name)
-                    self.objects[p] = class_(**worth)
+                    obj = class_(**worth)
+                    self.objects[p] = obj
