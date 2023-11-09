@@ -53,6 +53,26 @@ class HBNBCommand(cmd.Cmd):
                 print("** class doesn't exist **")
         else:
             print("** class name missing **")
+
+    def do_destroy(self, args):
+        arguments = args.split()
+        if not arguments:
+            print("** class name missing **")
+            return
+        try:
+            cls_name = arguments[0]
+            inst_id = arguments[1]
+            if inst:
+                storage.delete(inst)
+                storage.save()
+            else:
+                print("** no instance found **")
+        except IndexError:
+            if len(arguments) == 1:
+                print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+
         
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
