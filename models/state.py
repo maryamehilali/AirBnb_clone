@@ -11,3 +11,7 @@ class State(BaseModel):
     """
 
     name = ""
+
+    def __init__(self, *args, **kwargs):
+        """constructor"""
+        super().__init__(*args, **kwargs)
