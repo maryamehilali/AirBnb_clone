@@ -5,7 +5,7 @@ from datetime import datetime
 import models
 
 
-class BaseModel:
+class BaseModel(object):
     """the class BaseModel that defines all common
     attributes/methods for other classes"""
     def __init__(self, *args, **kwargs):

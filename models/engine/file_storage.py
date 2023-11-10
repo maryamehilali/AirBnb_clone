@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """module for the class FileStorage"""
 import json
-from os.path import isfile
+from models.base_model import BaseModel
 
 
 class FileStorage(object):
@@ -32,6 +32,7 @@ class FileStorage(object):
                     class_name, obj_id = p.split('.')
                     obj = eval(class_name)(**worth)
                     self.__objects[p] = obj
+                    
         except FileNotFoundError:
             pass
 
