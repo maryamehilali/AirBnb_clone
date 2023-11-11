@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """Unittest for class Place """
+from ...models.place import Place
 import unittest
 
 
-if __name__ == '__main__':
-    unittest.main()
+class TestPlace(unittest.TestCase):
+    """class for unittesting the Place Class"""
+    pass

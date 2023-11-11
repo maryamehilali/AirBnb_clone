@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """Unittest for class User """
+from ...models.user import User
 import unittest
 
 
-if __name__ == '__main__':
-    unittest.main()
+class TestUser(unittest.TestCase):
+    """class for unittesting the User Class"""
+    pass
