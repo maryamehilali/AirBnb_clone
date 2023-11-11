@@ -153,6 +153,13 @@ class HBNBCommand(cmd.Cmd):
                 data = data.replace("\"", "")
                 line = " ".join([class_name, data])
                 self.do_show(line)
+            elif "destroy" in command:
+                data = data[1].split("(")
+                command = data[0]
+                data = data[1].replace(")", "")
+                data = data.replace("\"", "")
+                line = " ".join([class_name, data])
+                self.do_destroy(line)
             else:
                 return super().default(line)
         else:
