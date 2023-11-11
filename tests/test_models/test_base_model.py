@@ -2,7 +2,7 @@
 """
 Unittest for class BaseModel
 """
-from models.base_model import BaseModel
+from ...models.base_model import BaseModel
 import unittest
 
 
