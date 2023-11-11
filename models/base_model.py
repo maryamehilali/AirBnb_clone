@@ -1,24 +1,24 @@
 #!/usr/bin/python3
 """module for class BaseModel """
-from uuid import uuid4
+import uuid
 from datetime import datetime
 import models
 
 
-class BaseModel(object):
+class BaseModel:
     """the class BaseModel that defines all common
     attributes/methods for other classes"""
     def __init__(self, *args, **kwargs):
         """initialization of attributes"""
         if kwargs is not None and kwargs != {}:
-            for p, worth in kwargs.items():
-                if p != "__class__":
-                    if p in ('created_at', 'updated_at'):
-                        setattr(self, p, datetime.fromisoformat(worth))
+            for key, value in kwargs.items():
+                if key != "__class__":
+                    if key in ('created_at', 'updated_at'):
+                        setattr(self, key, datetime.fromisoformat(value))
                     else:
-                        setattr(self, p, worth)
+                        setattr(self, key, value)
         else:
-            self.id = str(uuid4())
+            self.id = str(uuid.uuid4())
             self.created_at = datetime.now()
             self.updated_at = self.created_at
             models.storage.new(self)
