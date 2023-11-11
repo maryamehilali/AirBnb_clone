@@ -90,10 +90,16 @@ class HBNBCommand(cmd.Cmd):
         """Prints all string representation of all instances
         based or not on the class name"""
         arguments = args.split()
-        if not arguments or arguments[0] in HBNBCommand.classes:
+        if not arguments:
             list_obj = []
             for key, value in storage.all().items():
                 list_obj.append(str(value))
+            print(list_obj)
+        elif arguments[0] in HBNBCommand.classes:
+            list_obj = []
+            for key, value in storage.all().items():
+                if arguments[0] == key.split(".")[0]:
+                    list_obj.append(str(value))
             print(list_obj)
         else:
             print("** class doesn't exist **")
@@ -123,6 +129,46 @@ class HBNBCommand(cmd.Cmd):
                         print("** no instance found **")
                 else:
                     print("** instance id missing **")
+            else:
+                print("** class doesn't exist **")
+        else:
+            print("** class name missing **")
+
+    def default(self, line):
+        """Called on an input line when the command prefix is not recognized"""
+        data = line.split(".")
+        class_name = data[0]
+
+        if len(data) >= 2 and class_name in HBNBCommand.classes:
+            command = data[1]
+            command = command.replace("()", "")
+            if command == "all":
+                self.do_all(class_name)
+            elif command == "count":
+                self.do_count(class_name)
+            elif "show" in command:
+                data = data[1].split("(")
+                command = data[0]
+                data = data[1].replace(")", "")
+                data = data.replace("\"", "")
+                line = " ".join([class_name, data])
+                self.do_show(line)
+            else:
+                return super().default(line)
+        else:
+            return super().default(line)
+
+    def do_count(self, args):
+        """count the instances of a class"""
+        arguments = args.split()
+        if len(arguments) >= 1:
+            class_name = arguments[0]
+            if class_name in HBNBCommand.classes:
+                list_obj = []
+                for key, value in storage.all().items():
+                    if class_name == key.split(".")[0]:
+                        list_obj.append(str(value))
+                print(len(list_obj))
             else:
                 print("** class doesn't exist **")
         else:
