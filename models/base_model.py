@@ -1,15 +1,14 @@
 #!/usr/bin/python3
 """module for class BaseModel """
-
-
-import uuid
 from datetime import datetime
+import uuid
 import models
 
 
 class BaseModel:
     """the class BaseModel that defines all common
     attributes/methods for other classes"""
+
     def __init__(self, *args, **kwargs):
         """initialization of attributes"""
         if kwargs is not None and kwargs != {}:
