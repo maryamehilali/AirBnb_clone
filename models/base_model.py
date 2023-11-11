@@ -1,5 +1,8 @@
 #!/usr/bin/python3
-"""module for class BaseModel """
+"""
+module for class BaseModel that defines all common
+attributes/methods for other classes
+"""
 from datetime import datetime
 import uuid
 import models
